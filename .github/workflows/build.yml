@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - developoment
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -35,4 +36,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         #run: mvn clean verify sonar:sonar -Dsonar.projectKey=ricpdc_ISO2_24_Reparto -Dsonar.organization=ricpdc -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=086eb6502c073dafa77ef7c4a5f165786f0f277d 
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=ricpdc_ISO2_24_Reparto
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ricpdc_ISO2_24_Reparto
