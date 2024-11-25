@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 
+import es.uclm.reparto.business.entity.Greeting;
 import es.uclm.reparto.persistency.GreetingDAO;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,10 +26,15 @@ class GreetingControllerTest {
 	
 	@InjectMocks
 	private GreetingController greetingController;
+	
+	Greeting greeting;
 
 	@BeforeEach
 	protected void setUp() throws Exception {
 		 MockitoAnnotations.openMocks(this);
+		 greeting = new Greeting();
+		 greeting.setContent("hola");
+		 greeting.setPerson("X");
 	}
 
 	@AfterEach
@@ -43,7 +49,8 @@ class GreetingControllerTest {
 
 	@Test
 	public void testGreetingSubmit() {
-		throw new RuntimeException("not yet implemented");
+		String viewName = greetingController.greetingSubmit(greeting, model);
+		assertEquals("result", viewName);
 	}
 
 }
